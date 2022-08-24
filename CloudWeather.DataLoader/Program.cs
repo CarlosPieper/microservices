@@ -14,8 +14,8 @@ var tempServiceHost = tempServiceConfig["Host"];
 var tempServicePort = tempServiceConfig["Port"];
 
 var precipServiceConfig = servicesConfig.GetSection("Precipitation");
-var precipServiceHost = tempServiceConfig["Host"];
-var precipServicePort = tempServiceConfig["Port"];
+var precipServiceHost = precipServiceConfig["Host"];
+var precipServicePort = precipServiceConfig["Port"];
 
 var zipCodes = new List<String>
 {
@@ -119,7 +119,7 @@ List<int> PostTemp(string zip, DateTime day, HttpClient temperatureHttpClient)
     var tempResponse = temperatureHttpClient.PostAsJsonAsync("observation", temperatureObservation).Result;
     if (tempResponse.IsSuccessStatusCode)
     {
-        Console.WriteLine($"Posted precipitation: Date {day} Zip: {zip} Lo (F): {hiLoTemps[0]} Hi (F): {hiLoTemps[1]}");
+        Console.WriteLine($"Posted temperature: Date {day} Zip: {zip} Lo (F): {hiLoTemps[0]} Hi (F): {hiLoTemps[1]}");
     }
     else
     {
